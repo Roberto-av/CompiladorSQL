@@ -1,0 +1,14 @@
+
+‹
+java:S3824"HReplace this "Map.containsKey()" with a call to "Map.computeIfAbsent()".(ş±®8£’şøí1J$a9905771-7f41-49ca-b341-b9c6cee81447
+‹
+java:S3824"HReplace this "Map.containsKey()" with a call to "Map.computeIfAbsent()".(İÌ¢8¢’şøí1J$d5e31918-6746-4360-b8f8-be91609ebaef
+‹
+java:S3824"HReplace this "Map.containsKey()" with a call to "Map.computeIfAbsent()".(ş±®8¢’şøí1J$1580d75a-a06c-43e2-937a-1af19c0f83ad
+r	java:S106"+Replace this use of System.out by a logger.(éç¬ùÿÿÿÿ8±’şøí1J$ea224b7f-334f-490d-9464-119556dd73ec
+r	java:S106"+Replace this use of System.out by a logger.(³‰êÅÿÿÿÿÿ8²’şøí1J$5e1de390-29dc-4d68-b755-19f2767ac168
+l	java:S106 "+Replace this use of System.out by a logger.(Œæ€P8²’şøí1J$6e0ac3ea-76ab-4fe0-acab-5d42f00be021
+”
+java:S3457%"Q%n should be used in place of \n to produce the platform-specific line separator.(ğºîÕ8µ’şøí1J$c042dc04-0191-450e-bf66-5adc7b1ea47e
+m	java:S106%"+Replace this use of System.out by a logger.(ğºîÕ8µ’şøí1J$e74e6bbf-b992-425f-b639-c6575c925805
+r	java:S106&"+Replace this use of System.out by a logger.(ªÓ¼áşÿÿÿÿ8¶’şøí1J$61a337aa-2bab-484c-aaf8-4b6ac816403c

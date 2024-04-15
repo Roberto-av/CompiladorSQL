@@ -1,0 +1,14 @@
+
+j
+java:S3824"HReplace this "Map.containsKey()" with a call to "Map.computeIfAbsent()".(ω¶Χύÿÿÿÿ8σƒων1
+j
+java:S3824"HReplace this "Map.containsKey()" with a call to "Map.computeIfAbsent()".(¥ϊηύÿÿÿÿ8τƒων1
+j
+java:S3824"HReplace this "Map.containsKey()" with a call to "Map.computeIfAbsent()".(¥ϊηύÿÿÿÿ8τƒων1
+L	java:S106"+Replace this use of System.out by a logger.(ιη¬ωÿÿÿÿ8ƒƒων1
+G	java:S106"+Replace this use of System.out by a logger.(±θ•Ι8„ƒων1
+F	java:S106 "+Replace this use of System.out by a logger.(ζ€P8†ƒων1
+m
+java:S3457%"Q%n should be used in place of \n to produce the platform-specific line separator.(Ί¦‡8ƒων1
+F	java:S106%"+Replace this use of System.out by a logger.(Ί¦‡8‹ƒων1
+L	java:S106&"+Replace this use of System.out by a logger.(ªΣΌαώÿÿÿÿ8ƒων1

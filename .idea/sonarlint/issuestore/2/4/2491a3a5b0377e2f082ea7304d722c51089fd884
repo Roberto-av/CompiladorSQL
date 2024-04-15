@@ -1,0 +1,15 @@
+
+w
+java:S1481"/Remove this unused "tokenStart" local variable.(‹ô…™üÿÿÿÿ8¼Ûóøí1J$db65ff0f-df2d-4669-ae55-9f88bd1ad30c
+o
+java:S5855",Remove or rework this redundant alternative.(ğë¥¬8¿Ûóøí1J$ff3c82f8-ec98-43e0-9b53-64ee6382565b
+
+java:S5998"LRefactor this repetition that can lead to a stack overflow for large inputs.(ğë¥¬8ıÚÚúí1J$317be06a-930b-49b3-ba09-058a85b0f4d7
+”
+java:S5998#"LRefactor this repetition that can lead to a stack overflow for large inputs.(ó‹å‘ÿÿÿÿÿ8èôÊúí1J$b028924f-ac48-4f19-919e-7419438317df
+y
+java:S1172^"1Remove this unused method parameter "identifier".(ÍÀŒ¥øÿÿÿÿ8ÙÛóøí1J$a449e7fd-f97f-434c-8ba6-02beb6267868
+w
+java:S1172b"/Remove this unused method parameter "constant".(ŒÑœ˜üÿÿÿÿ8ÚÛóøí1J$a2a045d2-556f-417e-b5ed-77a03a130fe1
+—
+java:S5843"TSimplify this regular expression to reduce its complexity from 46 to the 20 allowed.(ğë¥¬8’ÛÚúí1J$6778ec8f-dc71-4ac3-b5ad-5edb421a8b98
