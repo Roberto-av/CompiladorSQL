@@ -49,46 +49,20 @@ public class Tokenizer {
 
     private int getCode(String token, TokenType type) {
         if (type == TokenType.RESERVADAS) {
-            return getCodeForKeyword(token);
+            return TokenCodes.getKeywordCode(token);
         } else if (type == TokenType.IDENTIFICADOR) {
             return getIdentifierCode(token);
         } else if (type == TokenType.CONSTANTE) {
             return getConstantCode(token);
         } else if (type == TokenType.RELACIONALES) {
-            return getCodeForLogic(token);
+            return TokenCodes.getLogicCode(token);
         } else if (type == TokenType.DELIMITADORES) {
-            return getCodeForDelimiter(token);
+            return TokenCodes.getDelimiterCode(token);
         } else if (type == TokenType.OPERADORES) {
-            return getCodeForOperator(token);
+            return TokenCodes.getOperatorCode(token);
         } else {
             return -1; // Código para otros tokens
         }
-    }
-
-    private int getCodeForKeyword(String token) {
-        Map<String, Integer> codeMap = new HashMap<>();
-        codeMap.put("SELECT", 10);
-        codeMap.put("FROM", 11);
-        codeMap.put("WHERE", 12);
-        codeMap.put("IN", 13);
-        codeMap.put("AND", 14);
-        codeMap.put("OR", 15);
-        codeMap.put("INSERT", 27);
-        codeMap.put("INTO", 28);
-        codeMap.put("VALUES", 29);
-        codeMap.put("CREATE", 16);
-        codeMap.put("TABLE", 17);
-        codeMap.put("CHAR", 18);
-        codeMap.put("NUMERIC", 19);
-        codeMap.put("NOT", 20);
-        codeMap.put("NULL", 21);
-        codeMap.put("CONSTRAINT", 22);
-        codeMap.put("KEY", 23);
-        codeMap.put("PRIMARY", 24);
-        codeMap.put("FOREIGN", 25);
-        codeMap.put("REFERENCES", 26);
-
-        return codeMap.getOrDefault(token.toUpperCase(), -1);
     }
 
     private int getIdentifierCode(String identifier) {
@@ -97,38 +71,6 @@ public class Tokenizer {
 
     private int getConstantCode(String constant) {
         return constantCodeCounter++;
-    }
-
-    private int getCodeForLogic(String token) {
-        Map<String, Integer> codeMapLogic = new HashMap<>();
-        codeMapLogic.put(">", 81);
-        codeMapLogic.put("<", 82);
-        codeMapLogic.put("=", 83);
-        codeMapLogic.put(">=", 84);
-        codeMapLogic.put("<=", 85);
-
-        return codeMapLogic.getOrDefault(token.toUpperCase(), -1);
-    }
-
-    private int getCodeForDelimiter(String token) {
-        Map<String, Integer> codeMapDelimiter = new HashMap<>();
-        codeMapDelimiter.put(",", 50);
-        codeMapDelimiter.put(".", 51);
-        codeMapDelimiter.put("(", 52);
-        codeMapDelimiter.put(")", 53);
-        codeMapDelimiter.put("'", 54);
-
-        return codeMapDelimiter.getOrDefault(token.toUpperCase(), -1);
-    }
-
-    private int getCodeForOperator(String token) {
-        Map<String, Integer> codeMapOperator = new HashMap<>();
-        codeMapOperator.put("+", 70);
-        codeMapOperator.put("-", 71);
-        codeMapOperator.put("*", 72);
-        codeMapOperator.put("/", 73);
-
-        return codeMapOperator.getOrDefault(token.toUpperCase(), -1);
     }
 
     private int countOccurrences(String input, String target) {
