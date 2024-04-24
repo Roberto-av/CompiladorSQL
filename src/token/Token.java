@@ -7,17 +7,22 @@ public class Token {
     private int code;
     private int lineNumber;
     private int tokenNumber;
+    private int startIndex;
+
+    public static final int END_OF_INPUT_CODE = -1;
+    public static final int EMPTY_PRODUCTION = -1;
 
     public Token(){
 
     }
 
-    public Token(String value, TokenType type, int code, int lineNumber, int tokenNumber) {
+    public Token(String value, TokenType type, int code, int lineNumber, int tokenNumber, int startIndex) {
         this.value = value;
         this.type = type;
         this.code = code;
         this.lineNumber = lineNumber;
         this.tokenNumber = tokenNumber;
+        this.startIndex = startIndex;
     }
 
     public String getValue() {
@@ -54,6 +59,14 @@ public class Token {
 
     public int getTokenNumber() {
         return tokenNumber;
+    }
+
+    public int getStartIndex() {
+        return startIndex;
+    }
+
+    public void setStartIndex(int startIndex) {
+        this.startIndex = startIndex;
     }
 
     public void setTokenNumber(int tokenNumber) {
