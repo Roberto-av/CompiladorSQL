@@ -1,3 +1,5 @@
+import paser.LL1Parser;
+import paser.QueryTree;
 import tables.ConstantTable;
 import tables.IdentifierTable;
 import tables.MainTable;
@@ -7,12 +9,17 @@ import token.Tokenizer;
 
 import java.util.*;
 
+import static paser.QueryTree.printTree;
+
 public class Main {
     public static void main(String[] args) {
+
         String input = "SELECT ANOMBRE\n" +
-                "FROM ALUMNOS A,INSCRITOS I,CARRERAS C\n" +
-                "WHERE A.A#=I.A# AND A.C#=C.C# AND I.SEMESTRE='2010I'\n" +
-                "AND C.CNOMBRE='ISC' AND A.GENERACION='2010'";
+                "FROM ALUMNOS,INSCRITOS,CARRERAS\n" +
+                "WHERE ALUMNOS.A#=INSCRITOS.A# AND ALUMNOS.C#=CARRERAS.C#\n" +
+                "AND INSCRITOS.SEMESTRE='2010I'\n" +
+                "AND CARRERAS.CNOMBRE='ISC\n" +
+                "AND ALUMNOS.GENERACION='2010'";
 
         Tokenizer tokenizer = new Tokenizer();
         List<Token> tokens = tokenizer.tokenize(input);
@@ -34,5 +41,14 @@ public class Main {
         MainTable.printMainTable(input);
         tablaIdentificadores.printIdentifierTable();
         tablaConstantes.printConstantTable();
+
+        LL1Parser parser = new LL1Parser();
+        boolean result = parser.parse(input);
+        if(result){
+            System.out.println();
+            System.out.println("--------------SUCCESS---------------");
+            System.out.println("200 sin error: La consulta es valida");
+        }
+
     }
 }
