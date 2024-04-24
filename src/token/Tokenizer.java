@@ -7,23 +7,27 @@ import java.util.regex.Pattern;
 public class Tokenizer {
     private int constantCodeCounter = 600;
     private int identifierCodeCounter = 401;
+    private int lineNumber = 1;
 
     public List<Token> tokenize(String input) {
         List<Token> tokens = new ArrayList<>();
         int tokenCounter = 1;
-        int lineNumber = 1;
         int tokenStart = 0;
+        int startIndex = 0;
 
-        Pattern pattern = Pattern.compile("\\b(SELECT|FROM|WHERE|IN|AND|OR|INSERT|INTO|VALUES|CREATE|TABLE|CHAR|NUMERIC|NOT|NULL|CONSTRAINT|KEY|PRIMARY|FOREIGN|REFERENCES)\\b|[a-zA-Z]\\w*(?:\\.\\w+)*(?:#)?|'[^']*'|<=?|>=?|==?|,|\\S");
+        Pattern pattern = Pattern.compile("\\b(SELECT|FROM|WHERE|IN|AND|OR|INSERT|INTO|VALUES|CREATE|TABLE|CHAR|NUMERIC|NOT|NULL|CONSTRAINT|KEY|PRIMARY|FOREIGN|REFERENCES)\\b|\\b[a-zA-Z]\\w*(?:\\.\\w+)?#?|\\b[a-zA-Z]\\w*(?:\\s[a-zA-Z]\\w*)*(?:\\.\\w+)?#?\\b|'[^']*'|\\b\\d+\\b|<=?|>=?|==?|,|\\S");
         Matcher matcher = pattern.matcher(input);
 
         while (matcher.find()) {
             String value = matcher.group();
             TokenType type = getTokenType(value);
             int code = getCode(value, type);
-            tokens.add(new Token(value, type, code, lineNumber, tokenCounter++));
+
             lineNumber += countOccurrences(value, "\n");
             tokenStart += value.length();
+            int tokenStartIndex = matcher.start(); // Obtener la posición de inicio del token en el texto original
+            int tokenLineNumber = calculateLineNumber(input, tokenStartIndex);
+            tokens.add(new Token(value, type, code, tokenLineNumber, tokenCounter++, tokenStartIndex));
         }
 
         return tokens;
@@ -32,9 +36,9 @@ public class Tokenizer {
     private TokenType getTokenType(String token) {
         if (Arrays.asList("SELECT", "FROM", "WHERE", "AND", "OR", "INSERT", "INTO", "VALUES", "CREATE", "TABLE", "CHAR", "NUMERIC", "NOT", "NULL","IN").contains(token.toUpperCase())) {
             return TokenType.RESERVADAS;
-        } else if (token.matches("[a-zA-Z]\\w*(?:\\.[a-zA-Z]\\w*)*(?:#)?")) {
+        } else if (token.matches("[a-zA-Z]\\w*(?:\\.[a-zA-Z]\\w*)*(?:#)?(?:\\s+[a-zA-Z]\\w*(?:\\.[a-zA-Z]\\w*)*(?:#)?)*")) {
             return TokenType.IDENTIFICADOR;
-        } else if (token.matches("'.*'")) {
+        } else if (token.matches("^'.*'$")) {
             return TokenType.CONSTANTE;
         } else if (Arrays.asList("=", ">=", "<=", "<", ">", "==").contains(token)) {
             return TokenType.RELACIONALES;
@@ -42,6 +46,8 @@ public class Tokenizer {
             return TokenType.DELIMITADORES;
         } else if (Arrays.asList("+" , "-" ,"*" ,"/").contains(token)) {
             return TokenType.OPERADORES;
+        } else if (token.matches("^[0-9]*$")) {
+            return TokenType.NUMERO; // El token consiste solo en números del 0 al 9
         } else {
             return TokenType.DESCONOCIDO;
         }
@@ -60,7 +66,9 @@ public class Tokenizer {
             return TokenCodes.getDelimiterCode(token);
         } else if (type == TokenType.OPERADORES) {
             return TokenCodes.getOperatorCode(token);
-        } else {
+        } else if (type == TokenType.NUMERO) {
+            return getConstantCode(token);
+        }else {
             return -1; // Código para otros tokens
         }
     }
@@ -71,6 +79,16 @@ public class Tokenizer {
 
     private int getConstantCode(String constant) {
         return constantCodeCounter++;
+    }
+
+    private int calculateLineNumber(String input, int tokenStartIndex) {
+        int lineNumber = 1;
+        for (int i = 0; i < tokenStartIndex; i++) {
+            if (input.charAt(i) == '\n') {
+                lineNumber++;
+            }
+        }
+        return lineNumber;
     }
 
     private int countOccurrences(String input, String target) {
