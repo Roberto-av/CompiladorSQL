@@ -7,5 +7,6 @@ public enum TokenType {
     OPERADORES,
     RELACIONALES,
     DELIMITADORES,
+    NUMERO,
     DESCONOCIDO
 }
