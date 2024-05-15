@@ -50,6 +50,7 @@ public class TokenCodes {
         codeMapDelimiter.put("(", 52);
         codeMapDelimiter.put(")", 53);
         codeMapDelimiter.put("'", 54);
+        codeMapDelimiter.put(";", 55);
     }
 
     static {

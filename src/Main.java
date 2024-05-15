@@ -1,5 +1,4 @@
 import paser.LL1Parser;
-import paser.QueryTree;
 import tables.ConstantTable;
 import tables.IdentifierTable;
 import tables.MainTable;
@@ -9,17 +8,33 @@ import token.Tokenizer;
 
 import java.util.*;
 
-import static paser.QueryTree.printTree;
-
 public class Main {
     public static void main(String[] args) {
 
-        String input = "SELECT ANOMBRE\n" +
-                "FROM ALUMNOS,INSCRITOS,CARRERAS\n" +
-                "WHERE ALUMNOS.A#=INSCRITOS.A# AND ALUMNOS.C#=CARRERAS.C#\n" +
-                "AND INSCRITOS.SEMESTRE='2010I'\n" +
-                "AND CARRERAS.CNOMBRE='ISC\n" +
-                "AND ALUMNOS.GENERACION='2010'";
+        String input = "CREATE TABLE PROFESORES(\n" +
+                "P# CHAR(2) NOT NULL,\n" +
+                "PNOMBRE CHAR(20) NOT NULL,\n" +
+                "EDAD NUMERIC(2) NOT NULL,\n" +
+                "SEXO CHAR(1)NOT NULL,\n" +
+                "ESP CHAR(4) NOT NULL,\n" +
+                "GRADO CHAR(3) NOT NULL,\n" +
+                "D# CHAR(2) NOT NULL,\n" +
+                "CONSTRAINT PK_PROFESORES PRIMARY KEY (P#),\n" +
+                "CONSTRAINT FK_PROFESORES FOREIGN KEY (D#) REFERENCES DEPARTAMENTOS(D#));\n" +
+                "INSERT INTO PROFESORES VALUES ('P1','DA VINCI LEONARDO',60,'M','PINT','LIC',\n" +
+                "\n" +
+                "'D2');\n" +
+                "\n" +
+                "INSERT INTO PROFESORES VALUES ('P2','ARQUIMIDES',65,'M','QUIM','MAE','D3');\n" +
+                "INSERT INTO PROFESORES VALUES ('P3','TURING ALAN',43,'M','COMP','DOC','D1');\n" +
+                "INSERT INTO PROFESORES VALUES ('P4','EINSTEIN ALBERT',58,'M','GENI','DOC','D1');\n" +
+                "INSERT INTO PROFESORES VALUES ('P5','CURIE MARIE',45,'F','QUIM','LIC','D3');\n" +
+                "INSERT INTO PROFESORES VALUES ('P6','HAWKING WILLIAM',52,'M','FISI','DOC','D4');\n" +
+                "INSERT INTO PROFESORES VALUES ('P7','VON NEWMAN JOHN',47,'M','COMP','MAE','D1');\n" +
+                "INSERT INTO PROFESORES VALUES ('P8','NEWTON ISAAC',36,'M','FISI','LIC','D3');\n" +
+                "INSERT INTO PROFESORES VALUES ('P9','THATCHER MARGARET',64,'F','COMP','MAE',\n" +
+                "\n" +
+                "'D1');";
 
         Tokenizer tokenizer = new Tokenizer();
         List<Token> tokens = tokenizer.tokenize(input);

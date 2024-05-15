@@ -34,7 +34,7 @@ public class Tokenizer {
     }
 
     private TokenType getTokenType(String token) {
-        if (Arrays.asList("SELECT", "FROM", "WHERE", "AND", "OR", "INSERT", "INTO", "VALUES", "CREATE", "TABLE", "CHAR", "NUMERIC", "NOT", "NULL","IN").contains(token.toUpperCase())) {
+        if (Arrays.asList("SELECT", "FROM", "WHERE", "AND", "OR", "INSERT", "INTO", "VALUES", "CREATE", "TABLE", "CHAR", "NUMERIC", "NOT", "NULL","IN", "CONSTRAINT", "PRIMARY", "KEY", "FOREIGN", "REFERENCES").contains(token.toUpperCase())) {
             return TokenType.RESERVADAS;
         } else if (token.matches("[a-zA-Z]\\w*(?:\\.[a-zA-Z]\\w*)*(?:#)?(?:\\s+[a-zA-Z]\\w*(?:\\.[a-zA-Z]\\w*)*(?:#)?)*")) {
             return TokenType.IDENTIFICADOR;
@@ -42,11 +42,11 @@ public class Tokenizer {
             return TokenType.CONSTANTE;
         } else if (Arrays.asList("=", ">=", "<=", "<", ">", "==").contains(token)) {
             return TokenType.RELACIONALES;
-        } else if (Arrays.asList("," , "." ,"(" ,")" ,"'").contains(token)) {
+        } else if (Arrays.asList("," , "." ,"(" ,")" ,"'", ";").contains(token)) {
             return TokenType.DELIMITADORES;
         } else if (Arrays.asList("+" , "-" ,"*" ,"/").contains(token)) {
             return TokenType.OPERADORES;
-        } else if (token.matches("^[0-9]*$")) {
+        } else if (token.matches("^\\d+$")) {
             return TokenType.NUMERO; // El token consiste solo en números del 0 al 9
         } else {
             return TokenType.DESCONOCIDO;
