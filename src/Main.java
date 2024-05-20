@@ -1,5 +1,4 @@
 import paser.LL1Parser;
-import paser.QueryTree;
 import tables.ConstantTable;
 import tables.IdentifierTable;
 import tables.MainTable;
@@ -8,8 +7,6 @@ import token.TokenType;
 import token.Tokenizer;
 
 import java.util.*;
-
-import static paser.QueryTree.printTree;
 
 public class Main {
     public static void main(String[] args) {
